@@ -1,0 +1,21 @@
+[package]
+name = "manual-track"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ctrlc = "3.4.5"
+env_logger = "0.11.6"
+futures = "0.3.31"
+log = "0.4.22"
+prost = "0.13.4"
+rustdds = "0.11.1"
+serde = "1.0.217"
+smol = "2.0.2"
+tokio = { version = "1.0", features = ["macros", "rt-multi-thread"] }
+tonic = "0.12.3"
+tonic-health = "0.12.3"
+tower-http = "0.6.2"
+
+[build-dependencies]
+tonic-build = "0.12.3"

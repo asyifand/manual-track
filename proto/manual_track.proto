@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+
+package manualtrack;
+
+message AddManualTrackReq {
+    string identity = 1;
+    string type = 2;
+    string environment = 3;
+    string category = 4;
+    string generalType = 5;
+    string privateCode = 6;
+    double altitude = 7;
+    double longitude = 8;
+    double latitude = 9;
+    string activity = 10;
+}
+
+message AddManualTrackRes {
+    string id = 1;
+    string message = 2;
+    string source = 3;
+    string idSource = 4;
+    int32 quality = 5;
+    int32 total = 6;
+    string status = 7;
+}
+
+message UpdateManualTrackReq {
+    string id = 1;
+    string identity =  2;
+    string environment = 3;
+    string category = 4;
+    string generalType = 5;
+    string privateCode = 6;
+    double altitude = 7;
+    double longitude = 8;
+    double latitude = 9;
+    double course = 10;
+    double speed = 11;
+    double bearing = 12;
+    double range = 13;
+    string activity = 14;
+}
+
+message UpdateManualTrackRes {
+    string id = 1;
+    string message = 2;
+    double latitude = 3;
+    double longitude = 4;
+    string source = 5;
+    string idSource = 6;
+    int32 quality = 7;
+}
+
+// message DeleteManualTrackReq {
+//     string id = 1;
+// }
+
+// message ManualTrackRes {
+//     string id = 1;
+//     string message = 2;
+//     int32 total = 3;
+
+// }
+
+message ErrorResponse {
+    string message = 1;
+    string errorCode = 2;
+}
+
+service ManualTrack {
+    rpc AddManualTrack(AddManualTrackReq) returns (AddManualTrackRes);
+    rpc UpdateManualTrack(UpdateManualTrackReq) returns (UpdateManualTrackRes);
+    // rpc DeleteManualTrack(DeleteManualTrackReq) returns (ManualTrackRes);
+}
