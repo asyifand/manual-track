@@ -1,13 +1,14 @@
+use std::collections::HashMap;
 use std::env;
 use std::sync::Arc;
 use tokio::sync::Mutex;
-// use manualtrack::ManualTrackService;
 use tonic::transport::Server;
 
 mod adapter;
 mod controllers;
 
 use controllers::manual_track_controller::ManualTrackService;
+use crate::adapter::add_track_pubs::AddManualTrackPublisher;
 // use adapter::add_track_pubs::AddManualTrackPublisher;
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -16,6 +17,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let service = ManualTrackService::default();
 
     println!("ManualTrackServer listening on {}", addr);
+
+    let manual_track = <ManualTrackService as std::default::Default>::default();
 
     Server::builder()
         .add_service(controllers::grpc::ManualTrackServer::new(service))
